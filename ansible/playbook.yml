@@ -1,0 +1,30 @@
+- hosts: localhost
+  tasks:
+    - name: Ensure unused volumes are deleted
+      community.aws.ec2_vol:
+        state: absent
+        region: "us-west-2"
+        volume_id: "{{ item }}"
+      loop:
+        - vol-12345678
+        - vol-87654321
+
+    - name: Ensure stopped instances are terminated
+      community.aws.ec2:
+        state: absent
+        region: "us-west-2"
+        instance_ids:
+          - i-12345678
+          - i-87654321
+
+    - name: Optimize S3 storage class
+      community.aws.s3_bucket:
+        name: "example-bucket"
+        region: "us-west-2"
+        lifecycle:
+          - id: "MoveToIA"
+            prefix: ""
+            status: "Enabled"
+            transitions:
+              - days: 30
+                storage_class: "STANDARD_IA"
