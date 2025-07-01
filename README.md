@@ -22,7 +22,7 @@ To get started with this demonstration, follow the instructions below:
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/davraops/cloud-cost-optimization-demo.git
+    git clone https://github.com/wonderolabisi/cloud-cost-optimization.git
     cd cloud-cost-optimization-demo
     ```
 
